@@ -22,7 +22,6 @@ def main(inputData):
                     if len(set(blocchi)) == 1:
                         ctr = ctr + int(cell)
                         break
-
     return ctr
 
 if __name__ == '__main__':
