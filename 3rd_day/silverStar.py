@@ -11,16 +11,11 @@ def main(inputData):
     for bank in inputData:
         length = len(bank)
         print(bank)
-        max_decine = 0
-        max_unità = 0
-        idx = 1
-        for row in bank:
-            if idx == 1:
-                max_unità = int(row)
-            elif idx == 2:
-                max_decine = max_unità
-                max_unità = int(row)
-            elif idx == length:
+        max_decine = int(bank[0])
+        max_unità = int(bank[1])
+        idx = 2
+        for row in bank[1:]:
+            if idx == length:
                 if int(row) > max_unità:
                     max_unità = int(row)
             else:
@@ -33,6 +28,10 @@ def main(inputData):
                     # do nothing
                     pass
             max_bank = max_decine * 10 + max_unità
+
+            if( max_unità == 9) and (max_decine == 9):
+                break
+
             idx = idx + 1
         print(max_bank)
         max_tot = max_tot + max_bank
