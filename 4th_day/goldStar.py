@@ -60,11 +60,23 @@ def main(inputDataList , lengthDataList):
             dx_edge = dx_edge + length_column
     output_sum = output_data.count('x')
 
+    output_list = ''
+    for row in output_data:
+        output_list = output_list + row
+   # print(output_list.replace('x','.'))
 
-    return output_sum
+    return output_sum, output_list
 
 
 if __name__ == "__main__":
     (inputDataList , lengthDataList) = getInputData()
-    output = main(inputDataList , lengthDataList)
-    print(output)
+    flag = True
+    sum = 0
+    output_list = inputDataList
+    while flag:
+        (output_sum , output_list) = main(output_list , lengthDataList)
+        sum = sum + output_sum
+        if 0 == output_sum:
+            flag = False
+    print(sum)
+    
