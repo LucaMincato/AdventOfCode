@@ -1,11 +1,21 @@
-def main():
+def getInputData():
+    output = ''
+    with open('inputData.txt', 'r', encoding='utf-8') as input_data:
+        for row in input_data.readlines():
+            tmp = row.replace('\n','')
+            output = output + tmp
+        length = len(tmp)
+
+        return (output, length)
+
+def main(inputDataList , lengthDataList):
     rc = 1  # number of row to check
     rc_array = []
     sum_input = 4
     sum_thrs = sum_input + 1 # devo considerare che l'elemento che prendo non viene contato
-    input_data = '..@@.@@@@.@@@.@.@.@@@@@@@.@.@@@.@@@@..@.@@.@@@@.@@.@@@@@@@.@.@.@.@.@@@@.@@@.@@@@.@@@@@@@@.@.@.@@@.@.'
+    input_data = inputDataList
     length_data = len(input_data)
-    length_column = 10
+    length_column = lengthDataList
     output_data = []
 
     for i in range(-rc,rc + 1):
@@ -14,7 +24,6 @@ def main():
     dx_edge = length_column - 1
     for el_idx in range(length_data):
         sum_of_paper = 0
-        print('this is', el_idx, input_data[el_idx])
         # guardo se c'è un rotolo di carta
         if '@' == input_data[el_idx]:
             output_data.append('x')
@@ -38,12 +47,10 @@ def main():
                         else:
                             start = init_start_idx
                         end = init_end_idx
-                    print(start)
-                    print(end)
-                    check_el = input_data[start : end]
+                    check_el = input_data[start : end + 1]
                     sum_of_paper = sum_of_paper + check_el.count('@')
 
-                if sum_of_paper > sum_thrs:
+                if sum_of_paper >= sum_thrs:
                     output_data[-1] = '@'
                     break
         else:
@@ -57,5 +64,6 @@ def main():
 
 
 if __name__ == "__main__":
-    output = main()
+    (inputDataList , lengthDataList) = getInputData()
+    output = main(inputDataList , lengthDataList)
     print(output)
