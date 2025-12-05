@@ -1,6 +1,6 @@
 def getInputData():
     output = ''
-    with open('inputData.txt', 'r', encoding='utf-8') as input_data:
+    with open('input.txt', 'r', encoding='utf-8') as input_data:
         for row in input_data.readlines():
             tmp = row.replace('\n','')
             output = output + tmp
