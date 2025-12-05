@@ -2,7 +2,7 @@ def getInputData():
     output_range = []
     flag = True
 
-    with open('provaInput.txt', 'r', encoding='utf-8') as input_data:
+    with open('InputData.txt', 'r', encoding='utf-8') as input_data:
         for row in input_data.readlines():
             tmp = row.replace('\n','')
             if '' == tmp:
@@ -15,7 +15,6 @@ def getInputData():
                 output_range.append(input_dict)
             else:
                 break
-
         return (output_range)
 
 def main(inputListRange):
@@ -41,7 +40,7 @@ def main(inputListRange):
                     output_list[idx]['start'] =  start
                     break
                 elif (start > output_list[idx]['end'] and end > output_list[idx]['end']) or (start < output_list[idx]['start'] and end < output_list[idx]['start']):
-                    if start != end and idx == (len(output_list) - 1):
+                    if  idx == (len(output_list) - 1):
                         output_list.append(row_range)
                 elif (start <= output_list[idx]['start'] and end >= output_list[idx]['end']):
                     output_list[idx]['start'] =  start
@@ -68,15 +67,5 @@ if __name__ == '__main__':
     for row in output:
         sum = sum + (row['end'] - row['start'] + 1)
     print(sum)
-    print(output)
-
-    r=[]
-    for row in output:
-        r.append(row['end'])
-
-if len(r) != len(set(r)):
-    print("Ci sono duplicati")
-else:
-    print("Nessun duplicato")
-
+    #print(output)
     
